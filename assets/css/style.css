@@ -4,3 +4,52 @@
     box-sizing: border-box;
     font-family:'Segoe UI', Tahoma, 'Geneva', Verdana, sans-serif;
 }
+
+/* Header style */
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+header a {
+    color: rgb(193, 121, 202);
+}
+
+/* wrapper */
+.wrapper {
+    margin: 15%;
+}
+
+/* quiz front page styles */
+#quizChallenge {
+    display: block;
+    text-align: center;
+}
+/* start btn position */
+.start {
+    display: block;
+    text-align: center;
+}
+
+/* button styles */
+button {
+    background-color: rgb(89, 27, 146);
+    border: none;
+    padding: 15px 32px;
+    border-radius: 12px;
+    color: white;
+    font-size: large;
+}
+
+
+button:hover {
+    background-color: rgb(186, 115, 196);
+}
+
+.choices button {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
