@@ -7,31 +7,35 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
+<!-- High Score Section/HS js -->
     <div class="hScores"><a href="scores.html">View High Scores</a></div>
     <div class="timer">Time: <span id="time"></span></div>
 
+<!-- wrapper div -->
     <div class="wrapper">
         <div id="quizChallenge" class="start">
             <h1>Coding Quiz Challenge</h1>
             <p>Try to answer the following code-related questions within the time limit. 
             Keep in mind that incorect answers will penalize your score/time by ten seconds!</p>
-
+<!-- start btn -->
             <button id="start">Start Quiz</button>
         </div>
-
+<!-- question section -->
         <div id="questions" class="hide">
         <h2 id="questionTitle"></h2>
         <div id="choices" class="choices"></div>
       </div>
 
-        <div id="questions" class="hide">
+<!-- End Screen -->
+        <div id="allDone" class="hide">
             <h3>All Done!</h3>
-            <p><span id="finalScore"></span> Your final score is</p>
-            <p>Enter Your Initials: <input type="text" id="initials"> <button id="submit">Submit</button></p>
+            <p><span id="finalScore"></span> Your final score is: </p>
+            <p>Enter Your Initials:<input type="text" id="initials"><button id="submit">Submit</button></p>
         </div>
 
         <div></div>
 
+<!-- link to main js -->
         <script src="./assets/js/script.js"></script>
     </div>
 </body>
