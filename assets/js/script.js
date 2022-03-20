@@ -2,7 +2,7 @@
 const timerEl = document.querySelector('#time');
 const startBtn = document.querySelector('#start');
 const questionsEl = document.querySelector('#questions');
-const optionsEl = document.querySelector('options');
+var optionsEl = document.querySelector('#options');
 const submitBtn = document.querySelector('#submit');
 const initialsEl = document.querySelector('#initials');
 const outcomeEl = document.querySelector('#outcome')
@@ -56,15 +56,15 @@ function revealQuiz(){
     const cQuestion = questions[cQuestionsIndex];
     const choiceEl = document.querySelector('questionsTitle');
     questionsEl.textContent = cQuestion.question;
-    optionsEl.innerHTML='';
+    optionsEl.innerHTML = "";
 
     cQuestion.options.forEach(function (option, i) {
         var optionEl = document.createElement('button');
-        optionEl.setAttribute.apply('class', 'option');
-        optionEl.setAttribute('result', 'option');
-        optionEl.textContent = i+1+'. '+option;
-        optionEl.onclick=answerClick;
-        optionEl.appendChild(optionEl);
+        optionsEl.setAttribute('class', 'option');
+        optionsEl.setAttribute('result', 'option');
+        optionsEl.textContent = i+1+'. '+option;
+        optionsEl.onclick=answerClick;
+        optionsEl.appendChild(optionEl);
     })
 }
 // answer click function
@@ -92,6 +92,17 @@ cQuestionsIndex++;
     }
 }
 
+function done(){
+    clearInterval(holdI);
+    var allDoneEl = document.querySelector('#allDone');
+    allDoneEl.removeAttribute('class');
+    
+    var yourScoreEl = document.querySelector('#yourScore');
+    yourScoreEl.textContent = seconds;
+
+    questionsEl.setAttribute('class', 'hide');
+}
+
 function countDown() {
     seconds--;
     timerEl.textContent = seconds;
@@ -100,5 +111,21 @@ function countDown() {
     }
 }
 
+function saveScore(){
+    var initials = initialsEl.value.trim();
+    if (initials!=="") {
+        var hScore = 
+        JSON.parse(window.localStorage.getItem('hScores')) || [];
+        var newScore = {
+            score: seconds,
+            initials: initials,
+        };
+        hScore.push(newScore);
+        window.localStorage.setItem('hScores', JSON.stringify(hScore));
+        window.location.href = "scores.html";
+    }
+}
 
 startBtn.onclick = startGame;
+
+submitBtn.onclick = saveScore;
