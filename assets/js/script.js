@@ -50,7 +50,7 @@ function startGame() {
 
     revealQuiz();
 }
-
+// reveal quiz function
 function revealQuiz(){
     const cQuestion = questions[cQuestionsIndex];
     const choiceEl = document.querySelector('questionsTitle');
@@ -58,7 +58,23 @@ function revealQuiz(){
     optionsEl.innerHTML='';
 
     cQuestion.options.forEach(function (option, i) {
-        const optionEl = document.createElement('button');
+        var optionEl = document.createElement('button');
         optionEl.setAttribute.apply('class', 'option');
+        optionEl.setAttribute('result', 'option');
+        optionEl.textContent = i+1+'. '+option;
+        optionEl.onclick=answerClick;
+        optionEl.appendChild(optionEl);
     })
 }
+// answer click function
+function answerClick() {
+    if(this.result !== questions[cQuestionsIndex].answer) {
+        seconds -= 10;
+    if(seconds < 0) {
+        seconds = 0;
+    }
+    timerEl.textContent = seconds;
+    }
+}
+
+startBtn.onclick = startGame;
