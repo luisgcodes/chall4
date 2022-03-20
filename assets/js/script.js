@@ -6,6 +6,11 @@ const optionsEl = document.querySelector('options');
 const submitBtn = document.querySelector('#submit');
 const initialsEl = document.querySelector('#initials');
 
+var cQuestionsIndex = 0;
+var seconds = 76;
+var holdI; 
+
+
 // Questions Array
 const questions = [
     {    
@@ -35,4 +40,25 @@ const questions = [
     }
 ];
 
+// Start/Timer
+function startGame() {
+    var quizChallElement = document.querySelector('#quizChallenge');
+    quizChallElement.setAttribute('class', 'hide')
+    questionsEl.removeAttribute('class');
+    holdI = setInterval(countDown, 1000);
+    timerEl.textContent = time;
 
+    revealQuiz();
+}
+
+function revealQuiz(){
+    const cQuestion = questions[cQuestionsIndex];
+    const choiceEl = document.querySelector('questionsTitle');
+    questionsEl.textContent = cQuestion.question;
+    optionsEl.innerHTML='';
+
+    cQuestion.options.forEach(function (option, i) {
+        const optionEl = document.createElement('button');
+        optionEl.setAttribute.apply('class', 'option');
+    })
+}
