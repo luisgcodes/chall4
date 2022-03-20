@@ -1,9 +1,17 @@
+// querySelectors
+const timerEl = document.querySelector('#time');
+const startBtn = document.querySelector('#start');
+const questionsEl = document.querySelector('#questions');
+const optionsEl = document.querySelector('options');
+const submitBtn = document.querySelector('#submit');
+const initialsEl = document.querySelector('#initials');
+
 // Questions Array
 const questions = [
     {    
         question: "Commonly used data types DO Not include:",
         answer: "3. alerts",
-        option: ["1. strings", "2. booleans", "3. alerts", "4. numbers"],
+        options: ["1. strings", "2. booleans", "3. alerts", "4. numbers"],
     },
     {
         question: "The condition in an if / else statement is enclosed with _______.",
@@ -26,3 +34,5 @@ const questions = [
         options: ["1. JavaScript", "2. terminal/bash", "3. for loops", "4. console.log"]
     }
 ];
+
+
