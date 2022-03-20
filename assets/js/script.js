@@ -1,14 +1,14 @@
 // querySelectors
-const timerEl = document.querySelector('#time');
-const startBtn = document.querySelector('#start');
-const questionsEl = document.querySelector('#questions');
+var timerEl = document.querySelector('#time');
+var startBtn = document.querySelector('#start');
+var questionsEl = document.querySelector('#questions');
 var optionsEl = document.querySelector('#options');
-const submitBtn = document.querySelector('#submit');
-const initialsEl = document.querySelector('#initials');
-const outcomeEl = document.querySelector('#outcome')
+var submitBtn = document.querySelector('#submit');
+var initialsEl = document.querySelector('#initials');
+var outcomeEl = document.querySelector('#outcome');
 
 var cQuestionsIndex = 0;
-var seconds = 76;
+var time = 76;
 var holdI; 
 
 
@@ -44,7 +44,7 @@ const questions = [
 // Start/Timer
 function startGame() {
     var quizChallElement = document.querySelector('#quizChallenge');
-    quizChallElement.setAttribute('class', 'hide')
+    quizChallElement.setAttribute('class', 'hide');
     questionsEl.removeAttribute('class');
     holdI = setInterval(countDown, 1000);
     timerEl.textContent = time;
@@ -53,8 +53,8 @@ function startGame() {
 }
 // reveal quiz function
 function revealQuiz(){
-    const cQuestion = questions[cQuestionsIndex];
-    const choiceEl = document.querySelector('questionsTitle');
+    var cQuestion = questions[cQuestionsIndex];
+    var choiceEl = document.querySelector('questionsTitle');
     questionsEl.textContent = cQuestion.question;
     optionsEl.innerHTML = "";
 
