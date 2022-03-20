@@ -5,6 +5,7 @@ const questionsEl = document.querySelector('#questions');
 const optionsEl = document.querySelector('options');
 const submitBtn = document.querySelector('#submit');
 const initialsEl = document.querySelector('#initials');
+const outcomeEl = document.querySelector('#outcome')
 
 var cQuestionsIndex = 0;
 var seconds = 76;
@@ -74,7 +75,20 @@ function answerClick() {
         seconds = 0;
     }
     timerEl.textContent = seconds;
+
+    outcomeEl.textContent = "Wrong!";
+    } else {
+        outcomeEl.textContent = "Correct!";
     }
-}
+    outcomeEl.setAttribute('class', 'outcome hide');
+    setTimeout(function () {
+        outcomeEl.setAttribute('class', 'outcome hide');
+    }, 1000);
+cQuestionsIndex++;
+    if (cQuestionsIndex === questions.length) {
+        done();
+
+    }
+
 
 startBtn.onclick = startGame;
