@@ -114,14 +114,14 @@ function countDown() {
 function saveScore(){
     var initials = initialsEl.value.trim();
     if (initials!=="") {
-        var hScore = 
+        var hScores = 
         JSON.parse(window.localStorage.getItem('hScores')) || [];
         var newScore = {
             score: seconds,
             initials: initials,
         };
-        hScore.push(newScore);
-        window.localStorage.setItem('hScores', JSON.stringify(hScore));
+        hScores.push(newScore);
+        window.localStorage.setItem('hScores', JSON.stringify(hScores));
         window.location.href = "scores.html";
     }
 }
