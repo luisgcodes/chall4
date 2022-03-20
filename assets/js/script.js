@@ -87,8 +87,18 @@ function answerClick() {
 cQuestionsIndex++;
     if (cQuestionsIndex === questions.length) {
         done();
-
+    }else {
+        revealQuiz();
     }
+}
+
+function countDown() {
+    seconds--;
+    timerEl.textContent = seconds;
+    if (seconds <=0) {
+        done();
+    }
+}
 
 
 startBtn.onclick = startGame;
