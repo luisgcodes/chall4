@@ -46,8 +46,9 @@ button:hover {
     background-color: rgb(186, 115, 196);
 }
 
-.choices button {
+.options button {
     display: block;
+    width: 200px;
 }
 
 .hide {

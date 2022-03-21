@@ -7,8 +7,9 @@ var submitBtn = document.querySelector('#submit');
 var initialsEl = document.querySelector('#initials');
 var outcomeEl = document.querySelector('#outcome');
 
+
 var cQuestionsIndex = 0;
-var time = 76;
+var time = 75;
 var holdI; 
 
 
@@ -48,39 +49,43 @@ function startGame() {
     questionsEl.removeAttribute('class');
     holdI = setInterval(countDown, 1000);
     timerEl.textContent = time;
+    quizChallElement.style.display = 'none';
 
     revealQuiz();
 }
 // reveal quiz function
 function revealQuiz(){
     var cQuestion = questions[cQuestionsIndex];
-    var choiceEl = document.querySelector('questionsTitle');
-    questionsEl.textContent = cQuestion.question;
+    var questionTitleEl = document.querySelector('#questionTitle');
+    questionTitleEl.textContent = cQuestion.question;
     optionsEl.innerHTML = "";
 
     cQuestion.options.forEach(function (option, i) {
         var optionEl = document.createElement('button');
-        optionsEl.setAttribute('class', 'option');
-        optionsEl.setAttribute('result', 'option');
-        optionsEl.textContent = i+1+'. '+option;
-        optionsEl.onclick=answerClick;
+
+        optionEl.setAttribute('class', 'option');
+        optionEl.setAttribute('value', 'option');
+
+        optionEl.textContent = option;
+        optionEl.onclick=answerClick;
         optionsEl.appendChild(optionEl);
-    })
+    });
 }
 // answer click function
 function answerClick() {
-    if(this.result !== questions[cQuestionsIndex].answer) {
-        seconds -= 10;
-    if(seconds < 0) {
-        seconds = 0;
+    if(this.value !== questions[cQuestionsIndex].answer) {
+        // adds penalty if wrong
+        time -= 10;
+    if(time < 0) {
+        time = 0;
     }
-    timerEl.textContent = seconds;
+    timerEl.textContent = time;
 
     outcomeEl.textContent = "Wrong!";
     } else {
         outcomeEl.textContent = "Correct!";
     }
-    outcomeEl.setAttribute('class', 'outcome hide');
+    outcomeEl.setAttribute('class', 'outcome');
     setTimeout(function () {
         outcomeEl.setAttribute('class', 'outcome hide');
     }, 1000);
@@ -98,34 +103,35 @@ function done(){
     allDoneEl.removeAttribute('class');
     
     var yourScoreEl = document.querySelector('#yourScore');
-    yourScoreEl.textContent = seconds;
+    yourScoreEl.textContent = time;
 
     questionsEl.setAttribute('class', 'hide');
 }
 
 function countDown() {
-    seconds--;
-    timerEl.textContent = seconds;
-    if (seconds <=0) {
+    time--;
+    timerEl.textContent = time;
+    if (time <=0) {
         done();
     }
 }
 
-function saveScore(){
+function saveScore() {
     var initials = initialsEl.value.trim();
     if (initials!=="") {
-        var hScores = 
-        JSON.parse(window.localStorage.getItem('hScores')) || [];
-        var newScore = {
-            score: seconds,
+        var highscores = 
+        JSON.parse(window.localStorage.getItem('highscores')) || [];
+        var nScore = {
+            score: time,
             initials: initials,
         };
-        hScores.push(newScore);
-        window.localStorage.setItem('hScores', JSON.stringify(hScores));
+        highscores.push(nScore);
+        window.localStorage.setItem('highscores', JSON.stringify(highscores));
         window.location.href = "scores.html";
     }
 }
 
+submitBtn.onclick = saveScore;
+
 startBtn.onclick = startGame;
 
-submitBtn.onclick = saveScore;
