@@ -14,10 +14,12 @@ highscores.forEach(function (score) {
 });
 }
 
-function clearScores() {
-    window.localStorage.removeItem('highscores');
+
+var clearEl = document.querySelector('#clear');
+clearEl.addEventListener('click', function() {
+    window.localStorage.removeItem("highscores");
     window.location.reload();
-}
-document.querySelector('#clear').onClick = clearScores;
+});
+
 
 revealHighScores();
